@@ -1,0 +1,35 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.main{
+    height: fit-content;
+}
+
+.game__container{
+    position: relative;
+    width: 300px;
+    height: 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+
+.grid__item{
+    width: 100px;
+    height: 100px;
+    border: black solid 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mark{
+    font-size: 25px;
+}
