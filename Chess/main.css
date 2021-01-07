@@ -39,3 +39,9 @@ body, html{
     width: 50px;
     height: 50px;
 }
+
+.cellActive{
+    border: 1px solid green;
+    background-color: rgba(111, 200, 100, 0.4);
+    z-index: 2;
+}
