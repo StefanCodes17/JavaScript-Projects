@@ -1,0 +1,41 @@
+body, html{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: grid;
+    place-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.gameContainer{
+    width: 95%;
+    height: 100%;
+}
+
+#chess__board{
+    display: flex;
+    flex-wrap: wrap;
+    width: 540px;
+}
+
+.cell{
+    border: 1px solid black;
+    width: 60px;
+    height: 60px;
+    display: grid;
+    place-items: center;
+}
+
+.white{
+    background: white;
+}
+
+.black{
+    background: beige;
+}
+
+.img{
+    width: 50px;
+    height: 50px;
+}
