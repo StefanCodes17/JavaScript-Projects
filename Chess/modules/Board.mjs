@@ -11,8 +11,7 @@ export function Board() {
             const row = []
             for (let j = 0; j < 8; j++) {
                 if (i == 1 || i == 6) {
-                    i == 1 ? row.push(new Cell(i, j, new Piece(i, j, 'P', 'black'))) : null
-                    i == 6 ? row.push(new Cell(i, j, new Piece(i, j, 'P', 'white'))) : null
+                    row.push(new Cell(i, j, new Piece(i, j, 'P', i == 1 ? 'black' : 'white')))
                 }
                 if (i == 0 || i == 7) {
                     switch (j) {
@@ -39,19 +38,20 @@ export function Board() {
         return this.board
     }
 
-    this.printBoard = () => {
-        for (let i = 0; i < 8; i++) {
-            let row = ''
-            for (let j = 0; j < 8; j++) {
-                if (this.board[i][j].piece) {
-                    row += this.board[i][j].piece.path + ' '
-                } else {
-                    row += 'X' + ' '
-                }
-            }
-            console.log(row)
-        }
-    }
+    // Dev Console Logging
+    // this.printBoard = () => {
+    //     for (let i = 0; i < 8; i++) {
+    //         let row = ''
+    //         for (let j = 0; j < 8; j++) {
+    //             if (this.board[i][j].piece) {
+    //                 row += this.board[i][j].piece.path + ' '
+    //             } else {
+    //                 row += 'X' + ' '
+    //             }
+    //         }
+    //         console.log(row)
+    //     }
+    // }
 
     this.clearMoves = () => {
         this.prevMoves &&
@@ -65,5 +65,15 @@ export function Board() {
             this.board[x][y].active = true
         })
         this.prevMoves = moves
+    }
+
+    this.makeMove = (cell, newCell) => {
+        cell.piece.hasMoved = true
+        cell.piece.xPosition = newCell.xPos
+        cell.piece.yPosition = newCell.yPos
+        newCell.piece = cell.piece
+        cell.piece = null
+        newCell.isEmpty = false
+        cell.isEmpty = false
     }
 }

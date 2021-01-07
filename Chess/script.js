@@ -3,6 +3,7 @@ import { Board } from './modules/Board.mjs'
 const gameBoard = new Board()
 gameBoard.initializeBoard()
 let boardState = gameBoard.getBoard()
+let pieceInHand;
 
 const clientBoard = document.getElementById('chess__board')
 
@@ -22,10 +23,19 @@ function generateBoard(boardState) {
             (j + i) % 2 == 0 ? tempDiv.classList.add('white') : tempDiv.classList.add('black')
             tempDiv.addEventListener('click', () => {
                 gameBoard.clearMoves()
-                let moves = boardState[i][j].piece.getPossMoves(boardState)
-                gameBoard.showMoves(moves)
-                clientBoard.innerHTML = ""
-                generateBoard(gameBoard.getBoard())
+                if (boardState[i][j].piece && tempDiv.classList[1] != 'cellActive') {
+                    let moves = boardState[i][j].piece.getPossMoves(boardState)
+                    gameBoard.showMoves(moves)
+                    clientBoard.innerHTML = ""
+                    generateBoard(gameBoard.getBoard())
+                    pieceInHand = boardState[i][j]
+                }
+                if (tempDiv.classList[1] == 'cellActive') {
+                    console.log(pieceInHand, boardState[i][j])
+                    gameBoard.makeMove(pieceInHand, boardState[i][j])
+                    clientBoard.innerHTML = ""
+                    generateBoard(gameBoard.getBoard())
+                }
             })
             clientBoard.append(tempDiv)
         }
